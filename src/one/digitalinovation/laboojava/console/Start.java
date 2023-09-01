@@ -37,7 +37,7 @@ public class Start {
 
             if (clienteLogado == null) {
 
-                System.out.println("Digite o cpf:");
+                System.out.println("Digite o cpf(123456789011):");
 
                 String cpf = "";
                 cpf = LeitoraDados.lerDado();
@@ -70,13 +70,15 @@ public class Start {
                 case "2":
                     System.out.println("Digite o código do livro");
                     String codigoLivro = LeitoraDados.lerDado();
-                    produtoNegocio.excluir(codigoLivro);
+                    produtoNegocio.excluir(codigoLivro, 'L');
                     break;
                 case "3":
                     //TODO Cadastrar Caderno
                     break;
                 case "4":
-                    //TODO Excluir Caderno
+                    System.out.println("Digite o código do caderno");
+                    String codigoCaderno = LeitoraDados.lerDado();
+                    produtoNegocio.excluir(codigoCaderno, 'C');
                     break;
                 case "5":
                     Pedido pedido = LeitoraDados.lerPedido(banco);
@@ -120,10 +122,16 @@ public class Start {
      */
     private static void identificarUsuario(String cpf) {
 
+    	/**
+    	 * Optional é utilizado para quando uma função pode ou não retornar um objeto, nesse caso do tipo <Cliente>
+    	 */
         Optional<Cliente> resultado = clienteNegocio.consultar(cpf);
 
         if (resultado.isPresent()) {
-
+        	/**
+        	 * Se encontrar um objeto, instancia um objeto cliente obtendo o resultado.get()
+        	 * Então define clienteLogado como este cliente
+        	 */
             Cliente cliente = resultado.get();
             System.out.println(String.format("Olá %s! Você está logado.", cliente.getNome()));
             clienteLogado = cliente;

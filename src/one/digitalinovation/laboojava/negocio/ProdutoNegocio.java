@@ -1,7 +1,9 @@
 package one.digitalinovation.laboojava.negocio;
 
 import one.digitalinovation.laboojava.basedados.Banco;
+import one.digitalinovation.laboojava.entidade.Livro;
 import one.digitalinovation.laboojava.entidade.Produto;
+import one.digitalinovation.laboojava.entidade.Caderno;
 
 import java.util.Optional;
 
@@ -53,8 +55,24 @@ public class ProdutoNegocio {
      * Exclui um produto pelo código de cadastro.
      * @param codigo Código de cadastro do produto
      */
-    public void excluir(String codigo) {
+    public void excluir(String codigo, char tipo) {
         //TODO Implementar a exclusão
+    	/**
+    	 * Usar foreach para percorrer os objetos da classe produto é ver se o código é encontrado
+    	 * Ao encontrar encerrar o loop, levando em consideração que códigos não podem ser repetidos
+    	 */
+    	int posicao = 0;
+    	for(Produto produto : bancoDados.getProdutos()) {
+    		if(produto.getCodigo().equalsIgnoreCase(codigo)) {
+    			if((tipo == 'L' && produto instanceof Livro) || (tipo == 'C' && produto instanceof Caderno)) {
+    				System.out.println("Produto excluído com sucesso!");
+        			bancoDados.removerProduto(posicao);
+        			break;
+    			} 
+    			System.out.println("A opção selecionada não corresponde ao tipo de produto!");    			
+    		}
+    		posicao++;
+    	}
     }
 
     /**

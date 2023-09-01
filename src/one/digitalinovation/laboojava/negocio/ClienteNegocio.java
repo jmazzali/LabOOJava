@@ -34,6 +34,9 @@ public class ClienteNegocio {
         if (bancoDados.getCliente().getCpf().equals(cpf)) {
             return Optional.of(bancoDados.getCliente());
         } else {
+        	/**
+        	 * Com esse retorno o resultado (na classe Start) e devido ao uso de Optional é possível utlizá-lo
+        	 */
             return Optional.empty();
         }
     }
