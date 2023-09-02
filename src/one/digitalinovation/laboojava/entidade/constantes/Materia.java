@@ -7,17 +7,17 @@ public enum Materia {
 
     M10(10);
 
-    private int materias;
+    private double materias;
 
     /**
      * Construtor.
      * @param fator Valor por tipo que influencia no cálculo do frete.
      */
-    private Materia(int materias) {
+    private Materia(double materias) {
         this.materias = materias / 100;
     }
 
-    public int getFator() {
+    public double getFator() {
         return materias;
     }
 }
