@@ -95,6 +95,13 @@ public class PedidoNegocio {
     /**
      * Lista todos os pedidos realizados.
      */
-    //TODO Método de listar todos os pedidos
-
+    public void listarTodos() {
+    	
+    	if (bancoDados.getPedidos().length != 0) {
+    		for(Pedido pedido : bancoDados.getPedidos())
+        		System.out.println(pedido);
+    	} else {
+    		System.out.println("Não há pedidos cadastrados!");
+    	}
+    }
 }

@@ -73,7 +73,9 @@ public class Start {
                     produtoNegocio.excluir(codigoLivro, 'L');
                     break;
                 case "3":
-                    //TODO Cadastrar Caderno
+                	System.out.println("Digite o nome do livro");
+                	Caderno caderno = LeitoraDados.lerCaderno();
+                	produtoNegocio.salvar(caderno);
                     break;
                 case "4":
                     System.out.println("Digite o código do caderno");
@@ -99,7 +101,7 @@ public class Start {
                     produtoNegocio.listarTodos();
                     break;
                 case "8":
-                    //TODO Listar todos os Pedidos
+                	pedidoNegocio.listarTodos();
                     break;
                 case "9":
                     System.out.println(String.format("Volte sempre %s!", clienteLogado.getNome()));
