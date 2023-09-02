@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class Pedido {
 	private String codigo;
-	private Cliente cliete;
-	private List<Produto> produtoList;
+	private String cliente;
+	private List<Produto> produtos;
 	private double total;
 	
 	public String getCodigo() {
@@ -19,17 +19,14 @@ public class Pedido {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-	public Cliente getCliete() {
-		return cliete;
+	public String getCliente() {
+		return cliente;
 	}
-	public void setCliete(Cliente cliete) {
-		this.cliete = cliete;
+	public void setCliente(String cliete) {
+		this.cliente = cliete;
 	}
-	public List<Produto> getProdutoList() {
-		return produtoList;
-	}
-	public void setProdutoList(List<Produto> produtoList) {
-		this.produtoList = produtoList;
+	public List<Produto> getProdutos() {
+		return produtos;
 	}
 	public double getTotal() {
 		return total;
@@ -37,11 +34,26 @@ public class Pedido {
 	public void setTotal(double total) {
 		this.total = total;
 	}
+		
+	private String getProdutosComprados() {
+		StringBuilder produtos = new StringBuilder();
+		produtos.append("[");
+		for(Produto p : getProdutos()) {
+			produtos.append(p.toString());
+			produtos.append("Qtd:");
+			produtos.append(p.getQuantidade());
+			produtos.append(" ");
+		}
+		produtos.append("]");
+		return produtos.toString();
+	}
+	
 	@Override
 	public String toString() {
-		return "Pedido [codigo=" + codigo + ", cliete=" + cliete + ", produtoList=" + produtoList + ", total=" + total
-				+ "]";
-	}	
+		return "Pedido [codigo=" + codigo + ", cliente=" + cliente + ", listProdutos=" + getProdutosComprados() + ", total="
+				+ total + "]";
+	}
+	
 	
 	
 }
