@@ -35,7 +35,7 @@ public class PedidoNegocio {
         }
 
         if (cupom != null) {
-            return  total * (1 - cupom.getDesconto());
+            return  total * (1 - (cupom.getDesconto()/100));
         } else {
             return  total;
         }
@@ -56,16 +56,28 @@ public class PedidoNegocio {
      * @param cupom Cupom de desconto a ser utilizado
      */
     public void salvar(Pedido novoPedido, Cupom cupom) {
-
-        //Definir padrão código
-        //Pegar data do dia corrente
-        //Formatar código
-
-        //Setar código no pedido
-        //Setar cliente no pedido
-        //Calcular e set total
-        //Adicionar no banco
-        //Mensagem
+    	
+    	String codigo = "PE%4d%02d%04d";
+    	LocalDate hoje = LocalDate.now();
+    	codigo = String.format(codigo, hoje.getYear(), hoje.getMonthValue(), bancoDados.getPedidos().length);
+    	novoPedido.setCodigo(codigo);
+    	
+    	boolean PedidoRepetido = false;
+    	for(Pedido pedido : bancoDados.getPedidos()) {
+    		if(pedido.getCodigo() == novoPedido.getCodigo())
+    		{
+    			PedidoRepetido = true;
+    			System.out.println("ERRO: Código de pedido duplicado");
+    			break;
+    		}
+    	}
+    	
+    	if(!PedidoRepetido) {
+    		novoPedido.setCliente(bancoDados.getCliente().getNome()); 
+    		novoPedido.setTotal(calcularTotal(novoPedido.getProdutos(), cupom));
+    		bancoDados.adicionarPedido(novoPedido);
+    		System.out.println("Pedido salvo");
+        }    	
     }
 
     /**
