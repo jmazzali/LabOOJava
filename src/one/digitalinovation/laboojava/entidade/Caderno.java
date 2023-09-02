@@ -17,10 +17,15 @@ public class Caderno extends Produto {
 	}
 
 	@Override
-	public String toString() {
-		return "Caderno [materia=" + materia + "]";
+	public double calcularFrete() {
+		return (getPreco() * getQuantidade()) * (1 + materia.getFator());
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "Caderno [materia=" + materia + "codigo=" + getCodigo() + "preço=" + getPreco() +"]";
+	}
+
 	
 }
