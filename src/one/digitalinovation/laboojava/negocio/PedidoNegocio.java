@@ -64,7 +64,7 @@ public class PedidoNegocio {
     	
     	boolean PedidoRepetido = false;
     	for(Pedido pedido : bancoDados.getPedidos()) {
-    		if(pedido.getCodigo() == novoPedido.getCodigo())
+    		if(pedido.getCodigo().equalsIgnoreCase(codigo))
     		{
     			PedidoRepetido = true;
     			System.out.println("ERRO: Código de pedido duplicado");

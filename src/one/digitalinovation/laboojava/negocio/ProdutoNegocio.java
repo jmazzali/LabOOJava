@@ -38,7 +38,7 @@ public class ProdutoNegocio {
 
         boolean produtoRepetido = false;
         for (Produto produto: bancoDados.getProdutos()) {
-            if (produto.getCodigo() == novoProduto.getCodigo()) {
+            if (produto.getCodigo().equalsIgnoreCase(codigo)) {
                 produtoRepetido = true;
                 System.out.println("Produto já cadastrado.");
                 break;
@@ -56,7 +56,6 @@ public class ProdutoNegocio {
      * @param codigo Código de cadastro do produto
      */
     public void excluir(String codigo, char tipo) {
-        //TODO Implementar a exclusão
     	/**
     	 * Usar foreach para percorrer os objetos da classe produto é ver se o código é encontrado
     	 * Ao encontrar encerrar o loop, levando em consideração que códigos não podem ser repetidos
