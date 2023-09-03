@@ -33,7 +33,7 @@ public class ProdutoNegocio {
     public void salvar(Produto novoProduto) {
 
         String codigo = "PR%04d";
-        codigo = String.format(codigo, bancoDados.getProdutos().length);
+        codigo = String.format(codigo, bancoDados.getProdutosTotais());
         novoProduto.setCodigo(codigo);
 
         boolean produtoRepetido = false;
@@ -47,6 +47,7 @@ public class ProdutoNegocio {
 
         if (!produtoRepetido) {
             this.bancoDados.adicionarProduto(novoProduto);
+            this.bancoDados.setProdutosTotais(this.bancoDados.getProdutosTotais() + 1);
             System.out.println("Produto cadastrado com sucesso.");
         }
     }

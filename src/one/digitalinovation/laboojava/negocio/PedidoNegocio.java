@@ -59,7 +59,7 @@ public class PedidoNegocio {
     	
     	String codigo = "PE%4d%02d%04d";
     	LocalDate hoje = LocalDate.now();
-    	codigo = String.format(codigo, hoje.getYear(), hoje.getMonthValue(), bancoDados.getPedidos().length);
+    	codigo = String.format(codigo, hoje.getYear(), hoje.getMonthValue(), bancoDados.getPedidosTotais());
     	novoPedido.setCodigo(codigo);
     	
     	boolean PedidoRepetido = false;
@@ -76,6 +76,7 @@ public class PedidoNegocio {
     		novoPedido.setCliente(bancoDados.getCliente().getNome()); 
     		novoPedido.setTotal(calcularTotal(novoPedido.getProdutos(), cupom));
     		bancoDados.adicionarPedido(novoPedido);
+    		bancoDados.setPedidosTotais(bancoDados.getPedidosTotais() + 1);
     		System.out.println("Pedido salvo");
         }    	
     }

@@ -34,17 +34,37 @@ public class Banco {
      * Cliente cadastrado.
      */
     private Cliente cliente;
+    
+    private int pedidosTotais, produtosTotais;
 
     public Banco() {
 
         this.produtos = new ArrayList<>();
         this.pedidos = new ArrayList<>();
         this.cliente = new Cliente();
+        this.pedidosTotais = 0;
+        this.produtosTotais = 0;
 
         this.cupons = new ArrayList<>();
         cupons.add(new Cupom("CUPOM2", 2));
         cupons.add(new Cupom("CUPOM5", 5));
         cupons.add(new Cupom("CUPOM7", 7));
+    }
+    
+    public int getPedidosTotais() {
+    	return pedidosTotais;
+    }
+    
+    public void setPedidosTotais(int pedidosTotais) {
+    	this.pedidosTotais = pedidosTotais;
+    }
+    
+    public int getProdutosTotais() {
+    	return produtosTotais;
+    }
+    
+    public void setProdutosTotais(int produtosTotais) { 
+    	this.produtosTotais = produtosTotais;
     }
 
     public Cliente getCliente() {
