@@ -13,6 +13,8 @@ public class Pedido {
 	private List<Produto> produtos;
 	private double total;
 	
+	public Pedido() { this.produtos = new ArrayList<>(); }
+	
 	public String getCodigo() {
 		return codigo;
 	}
