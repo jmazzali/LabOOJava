@@ -87,22 +87,21 @@ public class PedidoNegocio {
      */
     public void excluir(String codigo) {
 
-        int pedidoExclusao = -1;
-        for (int i = 0; i < bancoDados.getPedidos().length; i++) {
-
-            Pedido pedido = bancoDados.getPedidos()[i];
-            if (pedido.getCodigo().equals(codigo)) {
-                pedidoExclusao = i;
-                break;
-            }
-        }
-
-        if (pedidoExclusao != -1) {
-            bancoDados.removerPedido(pedidoExclusao);
-            System.out.println("Pedido excluído com sucesso.");
-        } else {
-            System.out.println("Pedido inexistente.");
-        }
+    	int posicao = 0;
+    	if(bancoDados.getPedidos().length != 0) {
+    		for (Pedido pedido : bancoDados.getPedidos()) {
+        		if(pedido.getCodigo().equalsIgnoreCase(codigo)) {
+        			bancoDados.removerPedido(posicao);
+        			System.out.println("Pedido excluído com sucesso!");
+        			break;
+        		}
+        		posicao++;
+        	}
+    		if(posicao == bancoDados.getPedidos().length)
+    				System.out.println("Código de pedido inexistente!");
+    	} else
+    	System.out.println("Não existem pedidos atualmente!");
+    	
     }
 
     /**

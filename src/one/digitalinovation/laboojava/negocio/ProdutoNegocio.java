@@ -73,6 +73,8 @@ public class ProdutoNegocio {
     		}
     		posicao++;
     	}
+    	if (posicao == bancoDados.getProdutos().length)
+    		System.out.println("Código de produto inexistente!");
     }
 
     /**
