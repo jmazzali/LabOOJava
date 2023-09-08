@@ -6,6 +6,7 @@ import one.digitalinovation.laboojava.entidade.Pedido;
 import one.digitalinovation.laboojava.entidade.Produto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -116,4 +117,16 @@ public class PedidoNegocio {
     		System.out.println("Não há pedidos cadastrados!");
     	}
     }
+
+	public Pedido consultarPedidoPorCodigo(String codigoPedidoConsulta) {
+		// TODO Auto-generated method stub
+		
+		if (bancoDados.getPedidos().length != 0) {
+			for (Pedido pedido : bancoDados.getPedidos()) {
+				if(pedido.getCodigo().equalsIgnoreCase(codigoPedidoConsulta))
+					return pedido;
+			}
+		}
+		return null;
+	}
 }
