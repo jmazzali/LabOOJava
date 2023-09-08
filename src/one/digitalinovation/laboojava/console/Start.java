@@ -32,19 +32,22 @@ public class Start {
         System.out.println("Bem vindo ao e-Compras");
 
         String opcao = "";
+        boolean registrado = false;
 
         while(true) {
 
             if (clienteLogado == null) {
 
-                System.out.println("Digite o cpf(123456789011):");
+            	System.out.println("Digite o CPF\n[q] - para sair");
 
                 String cpf = "";
                 cpf = LeitoraDados.lerDado();
 
-                identificarUsuario(cpf);
+                registrado = identificarUsuario(cpf);
             }
 
+            if (registrado == true) {
+            	
             System.out.println("Selecione uma opção:");
             System.out.println("1 - Cadastrar Livro");
             System.out.println("2 - Excluir Livro");
@@ -115,6 +118,7 @@ public class Start {
                     System.out.println("Opção inválida.");
                     break;
             }
+            }
         }
     }
 
@@ -122,13 +126,16 @@ public class Start {
      * Procura o usuário na base de dados.
      * @param cpf CPF do usuário que deseja logar na aplicação
      */
-    private static void identificarUsuario(String cpf) {
+    private static boolean identificarUsuario(String cpf) {
 
     	/**
     	 * Optional é utilizado para quando uma função pode ou não retornar um objeto, nesse caso do tipo <Cliente>
     	 */
         Optional<Cliente> resultado = clienteNegocio.consultar(cpf);
 
+        if (cpf.equalsIgnoreCase("q"))
+        	System.exit(0);
+        
         if (resultado.isPresent()) {
         	/**
         	 * Se encontrar um objeto, instancia um objeto cliente obtendo o resultado.get()
@@ -137,9 +144,10 @@ public class Start {
             Cliente cliente = resultado.get();
             System.out.println(String.format("Olá %s! Você está logado.", cliente.getNome()));
             clienteLogado = cliente;
+            return true;
         } else {
             System.out.println("Usuário não cadastrado.");
-            System.exit(0);
+            return false;
         }
     }
 }
