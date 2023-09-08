@@ -5,6 +5,8 @@ import one.digitalinovation.laboojava.entidade.Livro;
 import one.digitalinovation.laboojava.entidade.Produto;
 import one.digitalinovation.laboojava.entidade.Caderno;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -108,4 +110,35 @@ public class ProdutoNegocio {
             }
         }
     }
+    
+    public List<Produto> consultarLivroPorNome(String nome) {
+    	List<Produto> livrosEncontrados = new ArrayList<>();
+    	
+    	if(bancoDados.getProdutos().length != 0) {
+    		for (Produto produto : bancoDados.getProdutos()) {
+        		if (produto instanceof Livro) {
+        			Livro livro = (Livro) produto;
+        			if(livro.getNome().startsWith(nome))
+        				livrosEncontrados.add(livro);
+        		}
+        	}
+    	}    	
+    	return livrosEncontrados;
+    }
+
+	public List<Produto> consultarCadernoPorMateria(String nomeMateria) {
+		// TODO Auto-generated method stub
+		List<Produto> cadernosEncontrados = new ArrayList<>();
+		
+		if(bancoDados.getProdutos().length != 0) {
+			for (Produto produto : bancoDados.getProdutos()) {
+				if (produto instanceof Caderno) {
+					Caderno caderno = (Caderno) produto;
+					if(caderno.getMateria().name().equalsIgnoreCase(nomeMateria))
+						cadernosEncontrados.add(caderno);
+				}
+			}
+		}
+		return cadernosEncontrados;
+	}
 }
