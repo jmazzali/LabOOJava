@@ -114,6 +114,21 @@ public class Start {
                     System.out.println("Aplicação encerrada.");
                     System.exit(0);
                     break;
+                case "A":
+                	System.out.println("Digite o nome para a pesquisa: ");
+                	String nomeLivro = LeitoraDados.lerDado();
+                	System.out.println(produtoNegocio.consultarLivroPorNome(nomeLivro));
+                	break;
+                case "B": 
+                	System.out.println("Digite o nome da matéria (M2, M5 ou M10): ");
+                	String nomeMateria = LeitoraDados.lerDado();
+                	System.out.println(produtoNegocio.consultarCadernoPorMateria(nomeMateria));
+                	break;
+                case "C":
+                	System.out.println("Digite o código do pedido: ");
+                	String codigoPedidoConsulta = LeitoraDados.lerDado();
+                	System.out.println(pedidoNegocio.consultarPedidoPorCodigo(codigoPedidoConsulta));
+                	break;
                 default:
                     System.out.println("Opção inválida.");
                     break;
